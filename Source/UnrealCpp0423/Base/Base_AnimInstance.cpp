@@ -30,8 +30,7 @@ void UBase_AnimInstance::NativeUpdateAnimation(float DeltaSeconds)
 		{
 			Direction = UKismetAnimationLibrary::CalculateDirection(SmoothVelocity, Player->GetActorRotation());
 		}
-	}
-	
+	}	
 }
 
 void UBase_AnimInstance::NativeThreadSafeUpdateAnimation(float DeltaSeconds)
