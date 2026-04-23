@@ -24,6 +24,9 @@ ABase_Player::ABase_Player()
 	float HalfHeight = GetCapsuleComponent()->GetScaledCapsuleHalfHeight(); //88
 	GetMesh()->SetRelativeLocation(FVector(0.0f, 0.0f, -HalfHeight));
 	GetMesh()->SetRelativeRotation(FRotator(0.0f, -90.0f, 0.0f));
+
+	JumpMaxCount = 2;
+	JumpMaxHoldTime = 0.5f;
 }
 
 // Called when the game starts or when spawned
@@ -50,6 +53,7 @@ void ABase_Player::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 		EIC->BindAction(IA_Move, ETriggerEvent::Triggered, this, &ABase_Player::Move);
 		EIC->BindAction(IA_Look, ETriggerEvent::Triggered, this, &ABase_Player::Look);
 		EIC->BindAction(IA_Jump, ETriggerEvent::Started, this, &ABase_Player::Jump);
+		EIC->BindAction(IA_Jump, ETriggerEvent::Completed, this, &ACharacter::StopJumping);
 	}
 
 }
